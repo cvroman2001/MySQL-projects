@@ -1,0 +1,7 @@
+SELECT Title, Discount FROM Books WHERE discount > 4;
+SELECT Title, Retail FROM Books WHERE Retail BETWEEN 30 AND 50; 
+SELECT Title FROM Books WHERE Category IN ('COOKING,'COMPUTER'); 
+SELECT Lname, Fname FROM AUTHOR WHERE Lname LIKE 'S%'; 
+SELECT Title FROM BOOKS WHERE Discount IS NULL; 
+SELECT Order# FROM ORDERITEMS WHERE Quantity >= 2 AND PaidEach >= 40; 
+SELECT Title, Retail FROM Books WHERE Retail > 20 AND Title LIKE 'B%' ORDER BY PubID; 

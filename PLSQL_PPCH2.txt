@@ -1,0 +1,126 @@
+1)SET SERVEROUTPUT ON
+
+2)
+DECLARE
+	lv_name VARCHAR2(13); 
+BEGIN
+	lv_name := 'Chris Vroman'; 
+	DBMS_OUTPUT.PUT_LINE(lv_name); 
+END; 
+
+3)
+DECLARE
+	lv_variable1 NUMBER(3) := 0; 
+	lv_variable2 NUMBER(3) := 0; 
+BEGIN 
+	lv_variable2 := lv_variable1 + 1; 
+	DBMS_OUTPUT.PUT_LINE(lv_variable2); 
+END;
+ 
+4)
+DECLARE
+	lv_current_date DATE := CURRENT_DATE; 
+BEGIN
+	DBMS_OUTPUT.PUT_LINE(lv_current_date); 
+END;
+ 
+5)
+DECLARE
+	lv_V_NUMBER NUMBER(2) := 4; 
+BEGIN
+	IF lv_V_NUMBER > 0 THEN
+	   DBMS_OUTPUT.PUT_LINE(lv_V_NUMBER); 
+	END IF; 
+END; 
+
+6)
+DECLARE
+	lv_V_NUMBER NUMBER(2) := -3; 
+BEGIN
+	IF lv_V_NUMBER > 0 THEN
+	   DBMS_OUTPUT.PUT_LINE(lv_V_NUMBER);
+	ELSIF lv_V_NUMBER < 0 THEN
+	   DBMS_OUTPUT.PUT_LINE(lv_V_NUMBER);
+	END IF; 
+END; 
+
+7)
+DECLARE
+	lv_the_day VARCHAR2(10) := TO_CHAR(SYSDATE,'DAY');	 
+BEGIN
+	IF lv_the_day != 'Friday' THEN
+	  DBMS_OUTPUT.PUT_LINE('Today is not Friday'); 
+	ELSE
+          DBMS_OUTPUT.PUT_LINE(lv_the_day); 
+        END IF; 
+END; 
+
+8)
+
+DECLARE
+	lv_my_bday VARCHAR2(10) := TO_CHAR(TO_DATE('09-Sep-1990','DAY'),'DAY');
+BEGIN
+	IF lv_my_bday = 'Friday' THEN
+	   DBMS_OUTPUT.PUT_LINE('My bday is on Friday'); 
+	ELSIF lv_my_bday = 'Saturday' THEN 
+           DBMS_OUTPUT.PUT_LINE('My bday is on Saturday');
+        ELSIF lv_my_bday = 'Sunday' THEN 
+           DBMS_OUTPUT.PUT_LINE('My bday is on Sunday');
+        ELSE
+           DBMS_OUTPUT.PUT_LINE('It falls on a weekday'); 
+        END IF; 
+END; 
+
+9)
+DECLARE
+	lv_V_COUNTER NUMBER(2) := 1;
+BEGIN
+	LOOP
+	    DBMS_OUTPUT.PUT_LINE(lv_V_COUNTER); 
+            EXIT WHEN lv_V_COUNTER >= 6; 
+            lv_V_COUNTER := lv_V_COUNTER + 1; 
+        END LOOP; 
+END; 
+
+10)
+DECLARE
+	lv_V_COUNTER NUMBER(2) := 1; 
+BEGIN 
+	WHILE lv_V_COUNTER <= 6 LOOP
+	    DBMS_OUTPUT.PUT_LINE(lv_V_COUNTER); 
+            lv_V_COUNTER := lv_V_COUNTER + 1; 
+        END LOOP; 
+END;    
+
+11)
+DECLARE
+	lv_V_COUNTER NUMBER(2) := 1; 
+BEGIN
+	FOR i IN 1..6 LOOP
+	    DBMS_OUTPUT.PUT_LINE(lv_V_COUNTER); 
+            lv_V_COUNTER := lv_V_COUNTER + 1;
+        END LOOP; 
+END; 
+
+12)
+DECLARE
+	lv_my_bday VARCHAR2(10) := TO_CHAR(TO_DATE('09-SEP-2020','DAY'),'DAY'); 
+BEGIN 
+	CASE
+	    WHEN lv_my_bday = 'Monday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Monday'); 
+	    WHEN lv_my_bday = 'Tuesday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Tuesday');
+            WHEN lv_my_bday = 'Wednesday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Wednesday');
+            WHEN lv_my_bday = 'Thursday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Thursday');
+            WHEN lv_my_bday = 'Friday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Friday');
+            WHEN lv_my_bday = 'Saturday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Saturday');
+	    WHEN lv_my_bday = 'Sunday' THEN
+                 DBMS_OUTPUT.PUT_LINE('My birthday is on a Sunday');
+       END CASE; 
+       DBMS_OUTPUT.PUT_LINE(lv_my_bday); 
+END; 

@@ -1,0 +1,21 @@
+SELECT o.Order#, oi.Quantity FROM Orders o, ORDERITEMS oi WHERE o.Order# = oi.Order#; 
+SELECT o.Order#, oi.Quantity FROM Orders o, ORDERITEMS oi; 
+SELECT o.Order#, oi.Quantity FROM Orders o JOIN ORDERITEMS oi ON o.Order# = oi.Order#; 
+SELECT o.Order#, oi.Quantity FROM Orders o, ORDERITEMS oi WHERE o.Order# = oi.Order# AND oi.Quantity > 2; 
+SELECT o.Order#, oi.Quantity FROM Orders o, ORDERITEMS oi WHERE o.Order# = oi.Order# AND oi.Quantity > 2 AND o.Customer# > 1010;
+SELECT b.Title, o.Order#, oi.ISBN, oi.Item# FROM Books b, Orders o, ORDERITEMS oi WHERE b.ISBN = oi.ISBN AND o.Order# = oi.Order#; 
+SELECT Title, Order#, ISBN, Item# FROM Books JOIN ORDERITEMS  USING (ISBN) JOIN Orders USING (Order#) WHERE Quantity > 2 AND Category = 'COMPUTER'; 
+SELECT b.Title, o.Order#, oi.ISBN, oi.Item# FROM Books b JOIN ORDERITEMS oi ON b.ISBN = oi.ISBN JOIN Orders o ON o.Order# = oi.Order# WHERE oi.Quantity > 2 AND b.Category = 'COMPUTER';
+
+SELECT b.Title FROM Books b JOIN BOOKAUTHOR ba using (ISBN) WHERE b.category = 'COMPUTER'
+UNION
+SELECT b.Title FROM Books b JOIN BOOKAUTHOR ba using (ISBN) WHERE b.category = 'CHILDREN';
+
+SELECT b.Title FROM Books b JOIN BOOKAUTHOR ba using (ISBN) WHERE b.category = 'COMPUTER'
+UNION ALL
+SELECT b.Title FROM Books b JOIN BOOKAUTHOR ba using (ISBN) WHERE b.category = 'CHILDREN';
+
+SELECT c.Customer# FROM Customers c INTERSECT SELECT o.Customer# FROM Orders o;
+SELECT c.Customer# FROM Customers c MINUS SELECT o.Customer# FROM Orders o; 
+
+SELECT b.Title, b.ISBN, c.ISBN "Referred" FROM Books c JOIN Books b ON c.referred = b.ISBN;

@@ -1,0 +1,114 @@
+SET SERVEROUTPUT ON
+
+1)
+DECLARE 
+	lv_test_date DATE := '10-DEC-2012'; 
+	lv_test_num CONSTANT NUMBER(3) := 10;
+        lv_test_txt VARCHAR2(10); 
+BEGIN
+	lv_test_txt := 'Chris Vrom';
+        DBMS_OUTPUT.PUT_LINE(lv_test_txt); 
+	DBMS_OUTPUT.PUT_LINE(lv_test_date); 
+	DBMS_OUTPUT.PUT_LINE(lv_test_num); 
+END; 
+
+2) Flow Chart
+
+3)
+DECLARE
+	lv_total_purchases NUMBER(5,2) := 69; 
+	lv_rating VARCHAR2(4); 
+BEGIN
+	IF lv_total_purchases >= 200 THEN
+		lv_rating := 'High'; 
+	ELSIF lv_total_purchases < 200 AND lv_total_purchases >= 100 THEN
+		lv_rating := 'Mid'; 
+	ELSIF lv_total_purchases < 100 THEN
+		lv_rating := 'Low';
+	END IF; 
+	DBMS_OUTPUT.PUT_LINE(lv_rating); 
+END; 
+
+4)
+DECLARE
+	lv_total_purchases NUMBER(4,2) := 69; 
+	lv_rating VARCHAR2(4); 
+BEGIN
+	CASE
+	    WHEN lv_total_purchases >= 200 THEN
+		 lv_rating := 'High';
+	    WHEN lv_total_purchases < 200 AND lv_total_purchases >= 100 THEN
+		lv_rating := 'Mid'; 
+	    WHEN lv_total_purchases < 100 THEN
+		lv_rating := 'Low';
+	END CASE; 
+	DBMS_OUTPUT.PUT_LINE(lv_rating); 
+END; 
+
+5)
+DECLARE
+	lv_account_balance NUMBER (5,2) := 400; 
+	lv_payment_amount_received NUMBER (5,2) := 300;
+	lv_amount_owed BOOLEAN;
+	lv_bool_txt VARCHAR2(6);  
+BEGIN 
+	IF (lv_account_balance - lv_payment_amount_received) > 0 THEN
+		lv_amount_owed := TRUE; 
+	ELSE
+		lv_amount_owed := FALSE; 
+	END IF;
+	IF lv_amount_owed THEN 
+		lv_bool_txt := 'TRUE';
+	ELSE 
+		lv_bool_txt := 'FALSE';
+	END IF;
+	DBMS_OUTPUT.PUT_LINE(lv_bool_txt); 
+END; 
+
+6)
+DECLARE
+	lv_price_of_item NUMBER(5,2) := 100; 
+	lv_total_aval NUMBER(5,2) := 500;
+	lv_total_items NUMBER (4,2) := 0;
+	lv_total_spent NUMBER (5,2) := 0;   
+BEGIN
+	WHILE lv_total_aval > 0 LOOP
+		lv_total_aval := lv_total_aval - lv_price_of_item;
+		lv_total_items := lv_total_items + 1;
+		lv_total_spent := lv_total_spent + lv_price_of_item; 
+	END LOOP; 
+	DBMS_OUTPUT.PUT_LINE(lv_total_items);
+	DBMS_OUTPUT.PUT_LINE(lv_total_spent); 
+END; 
+
+7) FLOWCHART	
+
+8)
+DECLARE
+	lv_num_items NUMBER(20) := 10; 
+	lv_shipping_cost NUMBER (20,4) := 0; 
+	lv_member_status CHAR(1) := 'N'; 
+BEGIN
+	IF lv_num_items > 1 AND lv_num_items <= 3 AND lv_member_status = 'Y' THEN
+		lv_shipping_cost := 3.00; 
+	ELSIF lv_num_items >= 4 AND lv_num_items <= 6 AND lv_member_status = 'Y' THEN
+		lv_shipping_cost := 5.00;
+	ELSIF lv_num_items >= 7 AND lv_num_items <= 10 AND lv_member_status = 'Y' THEN
+		lv_shipping_cost := 7.00;
+	ELSIF lv_num_items > 10 AND lv_member_status = 'Y' THEN
+		lv_shipping_cost := 9.00;
+	ELSIF lv_num_items > 1 AND lv_num_items <= 3 AND lv_member_status = 'N' THEN
+		lv_shipping_cost := 5.00;
+	ELSIF lv_num_items >= 4 AND lv_num_items <= 6 AND lv_member_status = 'N' THEN
+		lv_shipping_cost := 7.50;
+	ELSIF lv_num_items >= 7 AND lv_num_items <= 10 AND lv_member_status = 'N' THEN
+		lv_shipping_cost := 10.00;
+	ELSIF lv_num_items > 10 AND lv_member_status = 'N' THEN
+		lv_shipping_cost := 5.00;
+	END IF; 
+	DBMS_OUTPUT.PUT_LINE(lv_num_items); 
+	DBMS_OUTPUT.PUT_LINE(lv_shipping_cost); 
+END; 
+	
+	
+	

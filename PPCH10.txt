@@ -1,0 +1,14 @@
+SELECT UPPER('christopher vroman') FROM DUAL;
+SELECT INITCAP('christopher vroman') FROM DUAL; 
+SELECT INSTR('christopher vroman',' ') "Blank space" FROM DUAL; 
+SELECT SUBSTR('christopher vroman', 13,6) FROM DUAL; 
+SELECT SUBSTR('christopher vroman',1,INSTR('christopher vroman',' ')-1) "First Name" FROM DUAL; 
+SELECT LENGTH(SUBSTR('christopher vroman',INSTR('christopher vroman','v'),INSTR('christopher vroman','n'))) "Last Name" FROM DUAL;
+SELECT CONCAT(CONCAT('christopher',' '),'vroman') "Name" FROM DUAL; 
+SELECT TO_CHAR(SYSDATE,'DD-MON-YY HH:MM:SS') FROM DUAL; 
+SELECT TRUNC(MONTHS_BETWEEN(CURRENT_DATE,'25-DEC-2020'),0) "MONTHS LEFT" FROM DUAL; 
+SELECT TO_DATE('JANUARY 21,2013','MONTH DD,YYYY') FROM DUAL; 
+SELECT TO_CHAR(TO_DATE('21-JAN-13','MONTH DD, YYYY'),'MONTH DD,YYYY') "DATE" FROM DUAL; 
+
+
+

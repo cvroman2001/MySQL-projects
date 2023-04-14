@@ -1,0 +1,51 @@
+SET SERVEROUTPUT ON
+
+1)
+DECLARE
+	lv_idproj dd_project.idproj%TYPE := 500;
+	lv_projname dd_project.projname%TYPE; 
+	lv_num_pledges NUMBER(10) := 0; 
+	lv_pledgeamt dd_pledge.pledgeamt%TYPE; 
+	lv_avg_pledgeamt NUMBER(10) := 0;
+	
+BEGIN
+	SELECT idproj, projname, pledgeamt, AVG(pledgeamt)
+	INTO lv_idproj, lv_projname, lv_pledgeamt, lv_avg_pledgeamt
+	FROM dd_project, dd_pledge
+	WHERE dd_project.idproj = lv_idproj; 
+	lv_num_pledges := dd_pledge.COUNT; 
+	DBMS_OUTPUT.PUT_LINE(lv_idproj || '*' || lv_projname || '*' || lv_num_pledges || '*' || lv_pledgeamt || '*' || lv_avg_pledgeamt); 
+END; 
+
+2)
+DECLARE
+	dd_projid_seq dd_project%ROWTYPE; 
+BEGIN 
+	dd_projid_seq.idproj := 530;
+	dd_projid_seq.projname := 'HK Animal Shelter Extension';
+	dd_projid_seq.projstartdate := '01-JAN-2013'; 
+ 	dd_projid_seq.projenddate := '05-MAY-2013'; 
+	dd_projid_seq.projfundgoal := 65000; 
+	INSERT INTO dd_project
+		VALUES dd_projid_seq; 
+END; 
+
+3)
+DECLARE
+	lv_pledgeid dd_pledge.idpledge%TYPE; 
+	lv_iddonor dd_pledge.iddoner%TYPE; 
+	lv_pledgeamt dd_pledge.pledgeamt%TYPE;
+	lv_paymonths dd_pledge.paymonths%TYPE 
+	lv_paydate dd_payment.paydate%TYPE; 
+	lv_pledge_type VARCHAR2(2) := 'LS'; 
+BEGIN
+	SELECT idpledge, iddonor, pledgeamt, paymonths, paydate
+	INTO lv_pledgeid, lv_iddonor, lv_pledgeamt, lv_paymonths, lv_paydate
+	FROM dd_pledge, dd_payment
+	WHERE TO_CHAR(dd_payment.paydate,'MON') = 'SEP'; 
+	IF lv_pledge_type = 'LS' THEN
+		DBMS_OUTPUT.PUT_LINE (lv_pledgeid || '*' || lv_iddnor || '*' || lv_pledgeamt || '*' || 'Lump Sump'); 
+	ELSIF lv_pledge_type = 'M' THEN
+		DBMS_OUTPUT.PUT_LINE (lv_pledgeid || '*' || lv_iddnor || '*' || lv_pledgeamt || '*' || 'Monthly-' lv_paymonths)
+	END IF;  
+END; 

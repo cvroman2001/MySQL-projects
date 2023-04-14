@@ -1,0 +1,46 @@
+1) 
+CREATE OR REPLACE VIEW contact
+ AS SELECT Contact, Phone
+    FROM Publisher; 
+
+2)
+CREATE OR REPLACE VIEW contact
+ AS SELECT Contact, Phone
+    FROM Publisher
+ WITH READ ONLY; 
+
+3)
+CREATE OR REPLACE FORCE VIEW homework13
+ AS SELECT Col1, Col2
+    FROM FirstAttempt; 
+4)
+SELECT *
+FROM homework13; 
+
+5)
+CREATE OR REPLACE VIEW reorderinfo
+AS SELECT ISBN, Title, Contact, Phone
+   FROM Books JOIN Publisher USING(PubID); 
+
+6)
+UPDATE reorderinfo
+ SET Contact = 'Christopher Vroman'
+ WHERE Phone = '800-555-9743';
+
+7)
+UPDATE reorderinfo
+ SET ISBN = '0987654321'
+ WHERE Title = 'REVENGE OF MICKEY'; 
+
+8)
+DELETE FROM reorderinfo
+WHERE Contact = 'Christopher Vroman'; 
+
+DELETE FROM reorderinfo
+WHERE Contact = 'DAVID DAVIDSON'; 
+
+9) 
+ROLLBACK;
+
+10)
+DROP VIEW reorderinfo; 
